@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "557018331620",
+    "project_id": "ghosttest-6dc52",
+    "storage_bucket": "ghosttest-6dc52.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557018331620:android:d4f027207e509fdb982ff1",
+        "android_client_info": {
+          "package_name": "com.example.ghosttest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo9_2AlPTmRxc7Ih3QPGOZfDgwYNioOt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
