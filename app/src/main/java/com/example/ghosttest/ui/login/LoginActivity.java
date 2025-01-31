@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             loadingProgressBar.setVisibility(View.VISIBLE);
 
             // Firebase Authentication Login
-            mAuth.signInWithEmailAndPassword("tirthbsq@gmail.com", "Tirth0812")
+            mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         loadingProgressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
