@@ -1,9 +1,7 @@
 package com.example.ghosttest.ui.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,15 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.ghosttest.MainActivity;
-import com.example.ghosttest.R;
 import com.example.ghosttest.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private ActivityLoginBinding binding;
     private FirebaseAuth mAuth;
 
     @Override
@@ -32,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Initialize View Binding
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Get references to UI elements
@@ -97,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Login failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });

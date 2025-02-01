@@ -13,13 +13,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ghosttest.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.ktx.Firebase;
+
+import java.util.Objects;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, password2EditText;
-    private Button registerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         password2EditText = findViewById(R.id.password2);
-        registerButton = findViewById(R.id.register);
+        Button registerButton = findViewById(R.id.register);
 
         registerButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
@@ -57,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                             finish(); // Close the activity and return to Login
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
