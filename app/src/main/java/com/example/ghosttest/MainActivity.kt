@@ -9,11 +9,6 @@ import androidx.core.content.ContextCompat
 import com.example.ghosttest.R.layout.activity_main
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
-<<<<<<< HEAD
-=======
-import com.mapbox.maps.MapboxMap
-import com.mapbox.maps.Style
->>>>>>> faaa15239eaeb64e7401e433bfbfb08fad584a61
 import com.mapbox.maps.plugin.locationcomponent.location
 import com.mapbox.geojson.Point
 import com.mapbox.maps.plugin.PuckBearing
@@ -23,11 +18,7 @@ import com.mapbox.maps.plugin.viewport.viewport
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mapView: MapView
-<<<<<<< HEAD
     private val locationPermissionRequestCode = 1
-=======
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1
->>>>>>> faaa15239eaeb64e7401e433bfbfb08fad584a61
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +31,7 @@ class MainActivity : AppCompatActivity() {
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                 this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-<<<<<<< HEAD
-                locationPermissionRequestCode
-=======
-                LOCATION_PERMISSION_REQUEST_CODE
->>>>>>> faaa15239eaeb64e7401e433bfbfb08fad584a61
-            )
+                locationPermissionRequestCode)
         } else {
             initializeMap()
         }
@@ -69,21 +55,12 @@ class MainActivity : AppCompatActivity() {
                 .pitch(0.0)
                 .bearing(0.0)
                 .build()
-
-<<<<<<< HEAD
             mapView.mapboxMap.setCamera(cameraOptions)
-=======
-            mapView.getMapboxMap().setCamera(cameraOptions)
->>>>>>> faaa15239eaeb64e7401e433bfbfb08fad584a61
         }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-<<<<<<< HEAD
         if (requestCode == locationPermissionRequestCode) {
-=======
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
->>>>>>> faaa15239eaeb64e7401e433bfbfb08fad584a61
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 initializeMap()
             } else {

@@ -1,0 +1,18 @@
+package com.example.ghosttest.models
+
+import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.ServerTimestamp
+import java.util.*
+
+data class User(
+    val userId: String = "",
+    val username: String = "",
+    val email: String = "",
+    val totalXp: Int = 0,
+    val ingameLevel: Int = 1,
+    val badges: List<String> = emptyList(),
+    val unlockedCharacters: List<String> = emptyList(),
+    val currentLocation: GeoPoint = GeoPoint(0.0, 0.0),
+    @ServerTimestamp // Auto-populate on Firestore server
+    val dateJoined: Date? = null // Firestore will set this automatically
+)
