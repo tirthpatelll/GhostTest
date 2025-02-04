@@ -1,7 +1,5 @@
 package com.example.ghosttest.utils
 
-import android.util.Log
-import com.example.ghosttest.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
@@ -12,43 +10,57 @@ class FirebaseAuthManager {
     private val db = FirebaseFirestore.getInstance()
 
     fun registerUser(email: String, password: String, username: String, onComplete: (Boolean, String?) -> Unit) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Get the newly created user's UID
-                    val userId = auth.currentUser?.uid ?: run {
-                        onComplete(false, "User ID is null")
+        // First check if username already exists
+        db.collection("users")
+            .whereEqualTo("username", username)
+            .get()
+            .addOnCompleteListener { usernameCheckTask ->
+                if (usernameCheckTask.isSuccessful) {
+                    // Username is already taken
+                    if (!usernameCheckTask.result?.isEmpty!!) {
+                        onComplete(false, "Username already exists. Please choose another one.")
                         return@addOnCompleteListener
                     }
 
-                    // Create a User object
-                    val user = User(
-                        userId = userId,
-                        username = username,
-                        email = email,
-                        totalXp = 0,
-                        ingameLevel = 1,
-                        badges = emptyList(),
-                        unlockedCharacters = emptyList(),
-                        currentLocation = GeoPoint(0.0, 0.0), // Default location
-                       ///dateJoined = FieldValue.serverTimestamp()
-                    )
+                    // If username is available, proceed with registration
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { authTask ->
+                            if (authTask.isSuccessful) {
+                                val userId = auth.currentUser?.uid ?: run {
+                                    onComplete(false, "User ID is null")
+                                    return@addOnCompleteListener
+                                }
 
-                    // Add/update the user document in Firestore
-                    db.collection("users")
-                        .document(userId)
-                        .set(user)
-                        .addOnSuccessListener {
-                            Log.d("Registration", "User added to Firestore")
-                            onComplete(true, null)
-                        }
-                        .addOnFailureListener { e ->
-                            Log.e("Registration", "Firestore error: ${e.message}")
-                            onComplete(false, e.message)
+                                // Create user document
+                                val userMap = hashMapOf(
+                                    "userId" to userId,
+                                    "username" to username,
+                                    "email" to email,
+                                    "totalXp" to 0,
+                                    "ingameLevel" to 1,
+                                    "badges" to emptyList<String>(),
+                                    "unlockedCharacters" to emptyList<String>(),
+                                    "currentLocation" to GeoPoint(0.0, 0.0),
+                                    "dateJoined" to FieldValue.serverTimestamp()
+                                )
+
+                                db.collection("users")
+                                    .document(userId)
+                                    .set(userMap)
+                                    .addOnSuccessListener {
+                                        onComplete(true, null)
+                                    }
+                                    .addOnFailureListener { e ->
+                                        // Delete auth user if Firestore write fails
+                                        auth.currentUser?.delete()
+                                        onComplete(false, "Failed to create user profile: ${e.message}")
+                                    }
+                            } else {
+                                onComplete(false, "Authentication failed: ${authTask.exception?.message}")
+                            }
                         }
                 } else {
-                    Log.e("Registration", "Auth error: ${task.exception?.message}")
-                    onComplete(false, task.exception?.message)
+                    onComplete(false, "Error checking username: ${usernameCheckTask.exception?.message}")
                 }
             }
     }
