@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = new FirebaseAuthManager();
+        mAuth = new FirebaseAuthManager(this);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -52,7 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             // Register user with Firebase
-            mAuth.registerUser(email, password, username, (success, errorMessage) -> {
+            mAuth.registerUser(
+                    email,
+                    password,
+                    username,
+                    (success, errorMessage) -> {
                 if (success) {
                     Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                     finish(); // Close the activity and return to Login
