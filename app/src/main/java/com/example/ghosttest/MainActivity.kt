@@ -1,12 +1,20 @@
 package com.example.ghosttest
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.ghosttest.R.layout.activity_main
+import com.example.ghosttest.ui.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.plugin.locationcomponent.location
@@ -19,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mapView: MapView
     private val locationPermissionRequestCode = 1
-
+    private val auth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
@@ -35,6 +43,13 @@ class MainActivity : AppCompatActivity() {
         } else {
             initializeMap()
         }
+
+        val settingsButton: Button = findViewById(R.id.btn_settings)
+
+        settingsButton.setOnClickListener { view ->
+            showPopupMenu(view)
+        }
+
     }
 
     private fun initializeMap() {
@@ -67,5 +82,32 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Location permission is required to display the puck", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(this, view)
+        val inflater: MenuInflater = popupMenu.menuInflater
+        inflater.inflate(R.menu.settings_menu, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.menu_profile -> {
+                    // Handle Profile action
+                    true
+                }
+                R.id.menu_settings -> {
+                    // Handle Settings action
+                    true
+                }
+                R.id.menu_logout -> {
+                    auth.signOut()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
     }
 }
