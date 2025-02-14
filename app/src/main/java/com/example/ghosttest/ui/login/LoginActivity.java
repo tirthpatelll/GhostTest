@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.ghosttest.MainActivity;
 import com.example.ghosttest.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -32,6 +33,14 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            // User is already logged in, navigate to the main screen
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         // Get references to UI elements
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
@@ -41,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         Button registerButton = binding.register;
         registerButton.setOnClickListener(v -> {
             // Navigate to RegisterActivity
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent1);
         });
 
 
@@ -89,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("LoginActivity", "Login successful");
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                             // Navigate to the next activity or main screen
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent2);
                             finish();
 
                         } else {
