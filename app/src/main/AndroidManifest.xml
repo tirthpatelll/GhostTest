@@ -29,6 +29,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.settings.UserProfileActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -14,6 +14,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.ghosttest.R.layout.activity_main
 import com.example.ghosttest.ui.login.LoginActivity
+import com.example.ghosttest.ui.settings.SettingsActivity
+import com.example.ghosttest.ui.settings.UserProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
@@ -45,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         val settingsButton: Button = findViewById(R.id.btn_settings)
-
         settingsButton.setOnClickListener { view ->
             showPopupMenu(view)
         }
@@ -92,15 +93,18 @@ class MainActivity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.menu_profile -> {
-                    // Handle Profile action
+                    // Handle profile menu item click
+                    startActivity(Intent(this, UserProfileActivity::class.java))
                     true
                 }
                 R.id.menu_settings -> {
-                    // Handle Settings action
+                    // Handle settings menu item click
+                    startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
                 R.id.menu_logout -> {
-                    auth.signOut()
+                    auth.signOut() // sign out the user
+                    // Handle logout menu item click
                     startActivity(Intent(this, LoginActivity::class.java))
                     true
                 }
