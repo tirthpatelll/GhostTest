@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.SettingsActivity"
+    android:padding="20dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_settings_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Settings"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Username -->
+    <TextView
+        android:id="@+id/tv_username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username:"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_settings_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp" />
+    
+    <!-- In-game Level -->
+    <TextView
+        android:id="@+id/tv_level_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level:"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_username_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp" />
+
+
+    <!-- Total XP -->
+    <TextView
+        android:id="@+id/tv_xp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total XP:"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_level_label"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp" />
+
+
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintTop_toBottomOf="@id/tv_xp_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
