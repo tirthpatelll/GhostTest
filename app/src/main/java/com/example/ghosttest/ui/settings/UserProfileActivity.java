@@ -43,7 +43,8 @@ public class UserProfileActivity extends AppCompatActivity {
                             // Update UI
                             tvUsername.setText(username);
                             tvLevel.setText(String.valueOf(level));
-                            tvXp.setText((int) xp);
+                            tvXp.setText(xp + "XP");
+                            Log.d("Firestore", "User data fetched successfully");
                         } catch (NullPointerException e) {
                             Log.e("Firestore", "Error fetching user data", e);
                         }
