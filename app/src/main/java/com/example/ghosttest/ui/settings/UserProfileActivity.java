@@ -1,11 +1,14 @@
 package com.example.ghosttest.ui.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ghosttest.MainActivity;
 import com.example.ghosttest.R;
 import com.example.ghosttest.utils.FireStoreManager;
 import com.example.ghosttest.utils.FirebaseAuthManager;
@@ -16,6 +19,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private FirebaseAuthManager authManager;
 
     private TextView tvUsername, tvLevel, tvXp;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +31,11 @@ public class UserProfileActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.username_value);
         tvLevel = findViewById(R.id.in_game_level_value);
         tvXp = findViewById(R.id.total_xp_value);
+        btnBack = findViewById(R.id.btn_back);
         loadUserData();
+        btnBack.setOnClickListener(v ->
+                new Intent(UserProfileActivity.this, MainActivity.class)
+                );
     }
 
     private void loadUserData() {
