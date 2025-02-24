@@ -26,7 +26,7 @@ public class UserProfileActivity extends AppCompatActivity {
         firestoreManager = new FireStoreManager();
         tvUsername = findViewById(R.id.username_value);
         tvLevel = findViewById(R.id.in_game_level_value);
-        tvXp = findViewById(R.id.total_xp_value);
+        tvXp = findViewById(R.id.tv_xp_value);
         loadUserData();
     }
 
