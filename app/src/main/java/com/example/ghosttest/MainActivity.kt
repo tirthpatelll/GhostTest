@@ -27,6 +27,9 @@ import com.mapbox.maps.plugin.viewport.viewport
 
 class MainActivity : AppCompatActivity() {
 
+    //set text on the TextView when ghost button is cliked
+
+
     private lateinit var mapView: MapView
     private val locationPermissionRequestCode = 1
     private val auth = FirebaseAuth.getInstance()
