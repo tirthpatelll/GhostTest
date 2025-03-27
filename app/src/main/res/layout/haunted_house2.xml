@@ -1,65 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".MainActivity">
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"> <!-- Set background to black -->
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="477dp"
+        android:layout_height="824dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236"
+        app:srcCompat="@drawable/haunted_house_mercer_williams_house"
+        tools:ignore="ContentDescription" />
 
-        <!-- Background Image -->
+    <!-- Ghost Character 1 -->
+    <ImageButton
+        android:id="@+id/ghost1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="668dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ghost_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Ghost icon for interaction"/>
 
-        <!-- Ghost Character 1 (Mrs. Wilson) -->
+    <!-- Ghost Character 2 -->
+    <ImageButton
+        android:id="@+id/ghost2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="484dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ghost_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Ghost icon for interaction"/>
 
-        <!-- Ghost Character 2 (The Wilson Daughter) -->
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="477dp"
-            android:layout_height="824dp"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.236"
-            app:srcCompat="@drawable/haunted_house_mercer_williams_house"
-            tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:id="@+id/ghost1"
-            android:layout_width="39dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="668dp"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ghost_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/ghost2"
-            android:layout_width="37dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="292dp"
-            android:layout_marginTop="484dp"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ghost_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- text view -->
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!-- Additional views, e.g., TextView, go here -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
